@@ -1,0 +1,12 @@
+config/.cloud/production_auth.json
+config/home-assistant_v2.db
+config/core
+config/.storage
+config/.ios.conf
+config/.uuid
+config/*.backup
+config/tts
+
+*.log
+
+secrets.yaml

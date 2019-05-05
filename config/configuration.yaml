@@ -1,0 +1,139 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 45.2238451
+  longitude: 10.2538302
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Rome
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: mamo1.ddns.net:8123
+  #ssl_certificate: !secret ssl_certificate
+  #ssl_key: !secret ssl_key
+  #ip_ban_enabled: True
+  #login_attempts_threshold: 3
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  enable:
+#    - homekit
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+    language: 'it'
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+mqtt: 
+# https://www.home-assistant.io/docs/mqtt/broker#embedded-broker
+  broker: 127.0.0.1
+  client_id: home-assistant
+  port: 1883
+
+#mqtt_statestream:
+#  base_topic: homeassistant
+#  publish_attributes: true
+#  publish_timestamps: true
+
+# Example using a delay after start of Home Assistant
+homekit:
+#  auto_start: False
+#  filter:
+#    include_domains:
+#      - alarm_control_panel
+#      - binary_sensor
+#      - climate
+#      - cover
+#      - device_tracker
+#      - fan
+#      - input_boolean
+#      - light
+#      - lock
+#      - media_player
+#      - remote
+#      - script
+#      - sensor
+#      - switch  
+
+automation:
+#https://www.home-assistant.io/components/homekit/#disable-auto-start
+#  - alias: 'Start HomeKit'
+#    trigger:
+#      - platform: homeassistant
+#        event: start
+#    action:
+#      - delay: 00:01  # Waits 5 minutes
+#      - service: homekit.start
+
+#ifttt:
+#  key: !secret ifttt_key
+
+camera:
+#  - platform: foscam
+#    ip: 192.168.1.12
+#    username: !secret foscam_username
+#    password: !secret foscam_password
+#  - platform: canary
+
+canary:
+  username: !secret canary_username
+  password: !secret canary_password
+
+notify:
